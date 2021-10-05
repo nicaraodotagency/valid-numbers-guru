@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'guru_format_validator_api' => [
+        'key' => env('GURU_FORMAT_VALIDATOR_API_KEY'),
+        'url' => preg_replace("/\/$/","",env('GURU_FORMAT_VALIDATOR_API_URI')),
+    ]
+
 ];
