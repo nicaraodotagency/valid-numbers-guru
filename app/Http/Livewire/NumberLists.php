@@ -2,12 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use App\Imports\NumbersImport;
 use App\Models\NumberList;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NumberLists extends Component
 {
-    public $numberLists, $number_list_id, $user_id;
+    use WithFileUploads;
+
+    public $numberLists, $number_list_id, $user_id, $file;
     public $updateMode = false;
 
     public function render()
@@ -23,10 +28,16 @@ class NumberLists extends Component
     public function store()
     {
         $validated = $this->validate([
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'file' => 'required|file|mimes:csv,txt'
         ]);
 
-        NumberList::create($validated);
+        $numberList = NumberList::create($validated);
+        $numberList
+            ->addMedia($this->file->getRealPath())
+            ->toMediaCollection();
+
+        Excel::import(new NumbersImport($numberList->id), $numberList->getFirstMedia()->getPath(), null, \Maatwebsite\Excel\Excel::CSV);
 
         session()->flash('message', 'List Created Successfully.');
 
