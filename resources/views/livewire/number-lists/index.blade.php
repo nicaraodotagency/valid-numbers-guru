@@ -26,6 +26,7 @@
             <tr>
                 <td>{{ $numberList->id }}</td>
                 <td>{{ $numberList->user_id }}</td>
+                <td>{{ $numberList->created_at }}</td>
                 <td>
                     <button wire:click="edit({{ $numberList->id }})" class="btn btn-primary btn-sm">Edit</button>
                     <button wire:click="delete({{ $numberList->id }})" class="btn btn-danger btn-sm">Delete</button>

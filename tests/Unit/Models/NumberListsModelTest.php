@@ -6,7 +6,7 @@ use App\Models\NumberList;
 use App\Models\User;
 use Tests\TestCase;
 
-class NumberListModelTest extends TestCase
+class NumberListsModelTest extends TestCase
 {
     /**
      * Test if NumberList model belongs to User model
