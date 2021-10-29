@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Imports\NumbersImport;
 use App\Models\NumberList;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
@@ -17,20 +18,17 @@ class NumberLists extends Component
 
     public function render()
     {
-        $this->numberLists = NumberList::all();
+        $this->numberLists = NumberList::where('user_id',Auth::user()->id)->get();
         return view('livewire.number-lists.index');
-    }
-
-    private function resetInputFields(){
-        $this->user_id = '';
     }
 
     public function store()
     {
         $validated = $this->validate([
-            'user_id' => 'required',
             'file' => 'required|file|mimes:csv,txt'
         ]);
+
+        $validated['user_id'] = Auth::user()->id;
 
         $numberList = NumberList::create($validated);
         $numberList
@@ -44,13 +42,9 @@ class NumberLists extends Component
         $this->resetInputFields();
     }
 
-    public function edit($id)
+    public function show($list_id)
     {
-        $numberList = NumberList::findOrFail($id);
-        $this->number_list_id = $id;
-        $this->user_id = $numberList->user_id;
-
-        $this->updateMode = true;
+        return redirect()->to('/number-lists/'.$list_id.'/numbers');
     }
 
     public function cancel()
@@ -59,22 +53,6 @@ class NumberLists extends Component
         $this->resetInputFields();
     }
 
-    public function update()
-    {
-        $validated = $this->validate([
-            'user_id' => 'required'
-        ]);
-
-        $numberList = NumberList::find($this->number_list_id);
-        $numberList->update([
-            'user_id' => $this->user_id
-        ]);
-
-        $this->updateMode = false;
-
-        session()->flash('message', 'List Updated Successfully.');
-        $this->resetInputFields();
-    }
 
     public function delete($id)
     {

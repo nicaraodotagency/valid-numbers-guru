@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('number-lists/{number_list_id}/numbers', function(Illuminate\Http\Request $request) {
+    return view('numbers', ['number_list_id' => $request->number_list_id]);
+})->name('numbers');
