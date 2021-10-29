@@ -765,6 +765,39 @@ select {
 [type='file']:focus {
 	outline: 1px auto -webkit-focus-ring-color;
 }
+.container {
+	width: 100%;
+}
+@media (min-width: 640px) {
+
+	.container {
+		max-width: 640px;
+	}
+}
+@media (min-width: 768px) {
+
+	.container {
+		max-width: 768px;
+	}
+}
+@media (min-width: 1024px) {
+
+	.container {
+		max-width: 1024px;
+	}
+}
+@media (min-width: 1280px) {
+
+	.container {
+		max-width: 1280px;
+	}
+}
+@media (min-width: 1536px) {
+
+	.container {
+		max-width: 1536px;
+	}
+}
 .prose {
 	color: #374151;
 	max-width: 65ch;
@@ -1175,6 +1208,9 @@ select {
 .mb-4 {
 	margin-bottom: 1rem;
 }
+.mb-1 {
+	margin-bottom: 0.25rem;
+}
 .-mt-px {
 	margin-top: -1px;
 }
@@ -1186,6 +1222,9 @@ select {
 }
 .inline-flex {
 	display: inline-flex;
+}
+.table {
+	display: table;
 }
 .grid {
 	display: grid;
@@ -1379,6 +1418,9 @@ select {
 .overflow-hidden {
 	overflow: hidden;
 }
+.overflow-x-auto {
+	overflow-x: auto;
+}
 .overflow-y-auto {
 	overflow-y: auto;
 }
@@ -1436,6 +1478,9 @@ select {
 .border-b {
 	border-bottom-width: 1px;
 }
+.border-r {
+	border-right-width: 1px;
+}
 .border-gray-300 {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
@@ -1454,6 +1499,10 @@ select {
 .border-gray-100 {
 	--tw-border-opacity: 1;
 	border-color: rgba(243, 244, 246, var(--tw-border-opacity));
+}
+.border-gray-400 {
+	--tw-border-opacity: 1;
+	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
 }
 .bg-white {
 	--tw-bg-opacity: 1;
@@ -1502,6 +1551,10 @@ select {
 .bg-gray-200 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
+.bg-blue-600 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
@@ -1677,6 +1730,9 @@ select {
 .tracking-widest {
 	letter-spacing: 0.1em;
 }
+.tracking-wider {
+	letter-spacing: 0.05em;
+}
 .text-gray-500 {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -1836,6 +1892,57 @@ select {
 .ease-in {
 	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
+input[type=file]::-webkit-file-upload-button {
+	cursor: pointer;
+	border-width: 0px;
+	--tw-bg-opacity: 1;
+	background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+	padding-top: 0.625rem;
+	padding-bottom: 0.625rem;
+	padding-left: 2rem;
+	padding-right: 1rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 500;
+	--tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+input[type=file]::-webkit-file-upload-button, input[type=file]::file-selector-button {
+	cursor: pointer;
+	border-width: 0px;
+	--tw-bg-opacity: 1;
+	background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+	padding-top: 0.625rem;
+	padding-bottom: 0.625rem;
+	padding-left: 2rem;
+	padding-right: 1rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 500;
+	--tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+input[type=file]::-webkit-file-upload-button:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+}
+input[type=file]::-webkit-file-upload-button:hover, input[type=file]::file-selector-button:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+}
+input[type=file]::-webkit-file-upload-button {
+    -webkit-margin-start: -1rem;
+            margin-inline-start: -1rem;
+    -webkit-margin-end: 1rem;
+            margin-inline-end: 1rem;
+}
+input[type=file]::-webkit-file-upload-button,
+input[type=file]::file-selector-button {
+    -webkit-margin-start: -1rem;
+            margin-inline-start: -1rem;
+    -webkit-margin-end: 1rem;
+            margin-inline-end: 1rem;
+}
 .hover\:border-gray-300:hover {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
@@ -1910,6 +2017,9 @@ select {
 .focus\:border-gray-300:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+}
+.focus\:border-transparent:focus {
+	border-color: transparent;
 }
 .focus\:bg-indigo-600:focus {
 	--tw-bg-opacity: 1;
@@ -2051,10 +2161,6 @@ select {
 		margin-left: 1.5rem;
 	}
 
-	.sm\:ml-0 {
-		margin-left: 0px;
-	}
-
 	.sm\:block {
 		display: block;
 	}
@@ -2069,10 +2175,6 @@ select {
 
 	.sm\:h-10 {
 		height: 2.5rem;
-	}
-
-	.sm\:h-20 {
-		height: 5rem;
 	}
 
 	.sm\:w-10 {
@@ -2197,10 +2299,6 @@ select {
 
 	.sm\:text-left {
 		text-align: left;
-	}
-
-	.sm\:text-right {
-		text-align: right;
 	}
 }
 @media (min-width: 768px) {

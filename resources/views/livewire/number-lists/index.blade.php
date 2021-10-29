@@ -1,38 +1,34 @@
 <div>
-
     @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session('message') }}
         </div>
     @endif
 
-    @if($updateMode)
-        @include('livewire.number-lists.update')
-    @else
-        @include('livewire.number-lists.create')
-    @endif
-
-    <table class="table table-bordered mt-5">
-        <thead>
-        <tr>
-            <th>No.</th>
-            <th>User Id</th>
-            <th>Created At</th>
-            <th width="150px">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($numberLists as $numberList)
-            <tr>
-                <td>{{ $numberList->id }}</td>
-                <td>{{ $numberList->user_id }}</td>
-                <td>{{ $numberList->created_at }}</td>
-                <td>
-                    <button wire:click="edit({{ $numberList->id }})" class="btn btn-primary btn-sm">Edit</button>
-                    <button wire:click="delete({{ $numberList->id }})" class="btn btn-danger btn-sm">Delete</button>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    @include('livewire.number-lists.create')
+        <div class="rounded-lg block w-full overflow-x-auto p-6">
+            <table class="table table-bordered w-full mt-5 bg-gray-50 border border-gray-300">
+                <thead>
+                <tr class="text-center border border-gray-300 p-2">
+                    <th>No.</th>
+                    <th>User Id</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($numberLists as $numberList)
+                    <tr class="text-center border border-gray-300 p-2">
+                        <td class="p-2">{{ $numberList->id }}</td>
+                        <td class="p-2">{{ $numberList->user_id }}</td>
+                        <td class="p-2">{{ $numberList->created_at }}</td>
+                        <td class="p-2">
+                            <x-jet-button class="bg-blue-600" wire:click="show({{ $numberList->id }})" >Show</x-jet-button>
+                            <x-jet-danger-button wire:click="delete({{ $numberList->id }})" >Delete</x-jet-danger-button>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
 </div>
