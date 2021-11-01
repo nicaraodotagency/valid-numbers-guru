@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Imports\NumbersImport;
 use App\Models\NumberList;
+use App\Repositories\GuruFormatValidatorApiRepository;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -37,22 +38,19 @@ class NumberLists extends Component
 
         Excel::import(new NumbersImport($numberList->id), $numberList->getFirstMedia()->getPath(), null, \Maatwebsite\Excel\Excel::CSV);
 
-        session()->flash('message', 'List Created Successfully.');
+        $guruFormatValidatorApiRepository = new GuruFormatValidatorApiRepository();
+        $guruFormatValidatorApiResponse = $guruFormatValidatorApiRepository->postList($numberList->numbers->pluck('number')->toArray());
 
-        $this->resetInputFields();
+        $numberList->format_validator_list_id = $guruFormatValidatorApiResponse["body"]["data"]["list_id"];
+        $numberList->save();
+
+        session()->flash('message', 'List Created Successfully.');
     }
 
     public function show($list_id)
     {
         return redirect()->to('/number-lists/'.$list_id.'/numbers');
     }
-
-    public function cancel()
-    {
-        $this->updateMode = false;
-        $this->resetInputFields();
-    }
-
 
     public function delete($id)
     {

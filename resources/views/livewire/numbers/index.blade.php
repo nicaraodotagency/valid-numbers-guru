@@ -11,6 +11,7 @@
                 <tr class="text-center border border-gray-300 p-2">
                     <th>No.</th>
                     <th>Number</th>
+                    <th>Result</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -18,6 +19,15 @@
                     <tr class="text-center border border-gray-300 p-2">
                         <td class="p-2">{{ $number->id }}</td>
                         <td class="p-2">{{ $number->number }}</td>
+                        <td class="p-2">
+                            @if ($number->result['countryCode'])
+                                {{ $number->result['countryAbbreviation']." [".$number->result['countryCode']."] " }}
+                            @endif
+                            {{ $number->result['valid']?"Valid":"Invalid" }}
+                            @if ($number->result['error'])
+                                {{ ", ".$number->result['error'] }}
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

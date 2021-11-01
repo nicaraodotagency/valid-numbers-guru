@@ -14,6 +14,10 @@ class Number extends Model
         'number'
     ];
 
+    protected $casts = [
+        'result' => 'array',
+    ];
+
     public function number_list()
     {
         return $this->belongsTo(NumberList::class);
