@@ -22,4 +22,11 @@ class GuruFormatValidatorApiRepository implements GuruFormatValidatorApiReposito
 
         return $lists->json();
     }
+
+    public function postList(array $numbers): array
+    {
+        $lists = $this->guruFormatValidatorApiClient->post("{$this->baseUrl}/api/lists", ["phoneNumbers" => $numbers]);
+
+        return $lists->json();
+    }
 }
