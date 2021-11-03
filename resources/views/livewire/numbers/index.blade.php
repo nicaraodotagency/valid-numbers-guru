@@ -14,23 +14,33 @@
                     <th>Result</th>
                 </tr>
                 </thead>
-                <tbody>
-                @foreach($numbers as $number)
+                @if(!$numbers->isEmpty())
+                    <tbody>
+                    @foreach($numbers as $number)
+                        <tr class="text-center border border-gray-300 p-2">
+                            <td class="p-2">{{ $number->id }}</td>
+                            <td class="p-2">{{ $number->number }}</td>
+                            <td class="p-2">
+                                @if(!is_null($number->result))
+                                    @if ($number->result['countryCode'])
+                                        {{ $number->result['countryAbbreviation']." [".$number->result['countryCode']."] " }}
+                                    @endif
+                                    {{ $number->result['valid']?"Valid":"Invalid" }}
+                                    @if ($number->result['error'])
+                                        {{ ", ".$number->result['error'] }}
+                                    @endif
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                @else
+                    <tbody>
                     <tr class="text-center border border-gray-300 p-2">
-                        <td class="p-2">{{ $number->id }}</td>
-                        <td class="p-2">{{ $number->number }}</td>
-                        <td class="p-2">
-                            @if ($number->result['countryCode'])
-                                {{ $number->result['countryAbbreviation']." [".$number->result['countryCode']."] " }}
-                            @endif
-                            {{ $number->result['valid']?"Valid":"Invalid" }}
-                            @if ($number->result['error'])
-                                {{ ", ".$number->result['error'] }}
-                            @endif
-                        </td>
+                        <td class="p-2" colspan="3">There are not numbers in this list</td>
                     </tr>
-                @endforeach
-                </tbody>
+                    </tbody>
+                @endif
             </table>
         </div>
 </div>
