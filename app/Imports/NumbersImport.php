@@ -31,7 +31,6 @@ class NumbersImport extends DefaultValueBinder implements ToModel, WithHeadingRo
     */
     public function model(array $row)
     {
-        logger($row);
         return new Number([
             "number_list_id" => $this->number_list_id,
             "number" => (string) $row["number"],

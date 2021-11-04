@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Models\NumberList;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
 
 class NumberListsModelTest extends TestCase
@@ -18,5 +19,17 @@ class NumberListsModelTest extends TestCase
         $numberList = NumberList::factory()->create();
 
         $this->assertInstanceOf(User::class, $numberList->user);
+    }
+
+    /**
+     * Test if NumberList model has many Number model
+     *
+     * @return void
+     */
+    public function test_has_many_repositories()
+    {
+        $numberList = new numberList();
+
+        $this->assertInstanceOf(Collection::class, $numberList->numbers);
     }
 }

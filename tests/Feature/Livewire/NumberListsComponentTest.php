@@ -13,6 +13,6 @@ class NumberListsComponentTest extends TestCase
 {
     function test_can_see_number_lists()
     {
-        $this->get('/')->assertSeeLivewire('number-lists');
+        $this->actingAs(User::factory()->create())->get('/dashboard')->assertSeeLivewire('number-lists');
     }
 }

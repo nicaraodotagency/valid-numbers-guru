@@ -39,7 +39,7 @@ class NumberLists extends Component
         Excel::import(new NumbersImport($numberList->id), $numberList->getFirstMedia()->getPath(), null, \Maatwebsite\Excel\Excel::CSV);
 
         $guruFormatValidatorApiRepository = new GuruFormatValidatorApiRepository();
-        $guruFormatValidatorApiResponse = $guruFormatValidatorApiRepository->postList($numberList->numbers->pluck('number')->toArray());
+        $guruFormatValidatorApiResponse = $guruFormatValidatorApiRepository->postList(Auth::user(), $numberList->numbers->pluck('number')->toArray());
 
         $numberList->format_validator_list_id = $guruFormatValidatorApiResponse["body"]["data"]["list_id"];
         $numberList->save();

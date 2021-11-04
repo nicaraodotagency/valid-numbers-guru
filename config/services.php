@@ -32,6 +32,7 @@ return [
 
     'guru_format_validator_api' => [
         'key' => env('GURU_FORMAT_VALIDATOR_API_KEY'),
+        'webhook' => env('GURU_FORMAT_VALIDATOR_WEBHOOK'),
         'url' => preg_replace("/\/$/","",env('GURU_FORMAT_VALIDATOR_API_URI')),
     ]
 
